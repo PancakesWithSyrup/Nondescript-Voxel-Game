@@ -7,8 +7,7 @@ float lastX = SCREEN_WIDTH / 2.0f;
 float lastY = SCREEN_HEIGHT / 2.0f;
 bool firstMouse = true;
 
-// timing
-float deltaTime = 0.0f;	// time between current frame and last frame
+float deltaTime = 0.0f;	// time between current frame  and last frame
 float lastFrame = 0.0f;
 
 void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
@@ -41,17 +40,17 @@ Game::Game(const char* windowName, const int windowHeight, const int windowWidth
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 	}
+
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 	glfwSetCursorPosCallback(window, mouseCallback);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	// Load OpenGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		std::cout << "Failed to initialize GLAD" << std::endl;
 
 	glEnable(GL_DEPTH_TEST);
-
-	mainLoop();
 }
 
 Game::~Game() {
@@ -83,7 +82,7 @@ void Game::processInput(GLFWwindow* window) {
 		camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
-void Game::mainLoop() {
+void Game::run() {
 	Shader ourShader("shader.vert", "shader.frag");
 	
 	float vertices[] = {
@@ -227,5 +226,4 @@ void Game::mainLoop() {
 
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
-
 }

@@ -8,9 +8,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-
-
-
 #include "Shader.h"
 #include "Camera.h"
 
@@ -21,11 +18,10 @@ class Game {
 public:
 	Game(const char* windowName, const int windowHeight, const int windowWidth);
 	~Game();
-
+	void run();
 private:
 	GLFWwindow* window;
 
 	GLFWwindow* createWindow(const char* windowName, const int windowHeight, const int windowWidth);
 	void processInput(GLFWwindow* window);
-	void mainLoop();
 };
