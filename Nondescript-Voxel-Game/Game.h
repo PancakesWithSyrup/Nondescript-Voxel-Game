@@ -22,6 +22,5 @@ public:
 private:
 	GLFWwindow* window;
 
-	GLFWwindow* createWindow(const char* windowName, const int windowHeight, const int windowWidth);
 	void processInput(GLFWwindow* window);
 };
