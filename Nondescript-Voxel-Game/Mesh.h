@@ -8,14 +8,15 @@
 
 class Mesh {
 public:
-	Mesh(std::vector<float> p_Vertices);
+	Mesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices);
+
 	~Mesh();
 
 	void draw(glm::vec3 position, Camera &camera);
 private:
-	std::vector<float> vertices;
+	std::vector<GLint> vertices, indices;
+
 	Shader shader;
-	GLuint vao, vbo;
-	std::vector<GLuint> buffer;
+	GLuint vao, vbo, ebo;
 };
 

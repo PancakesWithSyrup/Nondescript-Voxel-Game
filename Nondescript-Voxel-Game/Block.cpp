@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block() : mesh(blockVertices) {
+Block::Block() : mesh(vertices, indices) {
 
 }
 

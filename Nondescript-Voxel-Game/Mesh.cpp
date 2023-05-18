@@ -5,19 +5,26 @@
 #include "Game.h"
 #include "Mesh.h"
 
-Mesh::Mesh(std::vector<float> pVertices) : shader("shaders/shader.vert", "shaders/shader.frag") {
-    this->vertices = pVertices;
+Mesh::Mesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices) : shader("shaders/shader.vert", "shaders/shader.frag") {
+    this->vertices = p_vertices;
+    this->indices = p_indices;
 
-    glGenBuffers(1, &vbo);
     glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
+    glGenBuffers(1, &ebo);
 
     glBindVertexArray(vao);
-    // vertex buffer
+
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLint), &vertices[0], GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLint), &indices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_INT, GL_FALSE, 3 * sizeof(GLint), (void*)0);
+    
+    glBindVertexArray(0);
 }
 
 Mesh::~Mesh() {
@@ -26,7 +33,6 @@ Mesh::~Mesh() {
 }
 
 void Mesh::draw(glm::vec3 position, Camera &camera) {
-    // uncomment this call to draw in wireframe polygons.
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     shader.use();
@@ -36,13 +42,15 @@ void Mesh::draw(glm::vec3 position, Camera &camera) {
     glm::mat4 view = camera.GetViewMatrix();
     shader.setMat4("view", view);
 
-    glBindVertexArray(vao);
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, position);
+
     float angle = 0.0f;
     model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
     shader.setMat4("model", model);
 
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(vao);
+    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }
 
