@@ -2,10 +2,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Game.h"
-#include "Mesh.h"
+#include "BlockMesh.h"
+#include "../Game.h"
 
-Mesh::Mesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices) : shader("shaders/shader.vert", "shaders/shader.frag") {
+BlockMesh::BlockMesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices) : shader("shaders/shader.vert", "shaders/shader.frag") {
     this->vertices = p_vertices;
     this->indices = p_indices;
 
@@ -27,12 +27,12 @@ Mesh::Mesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices) : shader
     glBindVertexArray(0);
 }
 
-Mesh::~Mesh() {
+BlockMesh::~BlockMesh() {
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
 }
 
-void Mesh::draw(glm::vec3 position, Camera &camera) {
+void BlockMesh::draw(glm::vec3 position, Camera &camera) {
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     shader.use();

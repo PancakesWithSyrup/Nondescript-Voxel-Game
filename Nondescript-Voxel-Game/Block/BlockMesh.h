@@ -3,14 +3,14 @@
 
 #include <glad/glad.h>
 
-#include "Shader.h"
-#include "Camera.h"
+#include "../Shader.h"
+#include "../Camera.h"
 
-class Mesh {
+class BlockMesh {
 public:
-	Mesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices);
+	BlockMesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices);
 
-	~Mesh();
+	~BlockMesh();
 
 	void draw(glm::vec3 position, Camera &camera);
 private:

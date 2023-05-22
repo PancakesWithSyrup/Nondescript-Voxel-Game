@@ -19,19 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Block\Block.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Chunk\Chunk.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Block\BlockMesh.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Block.h" />
+    <ClInclude Include="Block\Block.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Chunk\Chunk.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Block\BlockMesh.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

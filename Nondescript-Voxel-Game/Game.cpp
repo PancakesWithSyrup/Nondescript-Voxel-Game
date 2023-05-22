@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "Block.h"
+#include "Block/Block.h"
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
@@ -94,9 +94,15 @@ void Game::run() {
 		// render
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);		
 		glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
-
-		block.draw(glm::vec3(0.0f, 0.0f, 0.0f), camera);
-		block.draw(glm::vec3(1.0f, 0.0f, 0.0f), camera);
+		
+		const int CHUNK_SIZE = 16;
+		for (int x = 0; x < CHUNK_SIZE; x++) {
+			for (int y = 0; y < CHUNK_SIZE; y++) {
+				for (int z = 0; z < CHUNK_SIZE; z++) {
+					block.draw(glm::vec3(x, y, z), camera);
+				}
+			}
+		}
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		glfwSwapBuffers(window);
