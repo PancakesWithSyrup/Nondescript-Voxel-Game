@@ -26,6 +26,8 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Block\BlockMesh.cpp" />
+    <ClCompile Include="Quad\QuadMesh.cpp" />
+    <ClCompile Include="Quad\Quad.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +36,8 @@
     <ClInclude Include="Chunk\Chunk.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Block\BlockMesh.h" />
+    <ClInclude Include="Quad\QuadMesh.h" />
+    <ClInclude Include="Quad\Quad.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
