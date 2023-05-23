@@ -30,6 +30,7 @@ BlockMesh::BlockMesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices
 BlockMesh::~BlockMesh() {
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &ebo);
 }
 
 void BlockMesh::draw(glm::vec3 position, Camera &camera) {

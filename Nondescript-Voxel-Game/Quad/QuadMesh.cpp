@@ -37,6 +37,7 @@ QuadMesh::QuadMesh(enum class QUAD_DIRECTION pDirection) : shader("shaders/shade
 QuadMesh::~QuadMesh() {
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &ebo);
 }
 
 void QuadMesh::draw(glm::vec3 position, Camera& camera) {
