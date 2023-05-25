@@ -5,10 +5,27 @@
 #include "BlockMesh.h"
 #include "../Game.h"
 
-BlockMesh::BlockMesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices) : shader("shaders/shader.vert", "shaders/shader.frag") {
-    this->vertices = p_vertices;
-    this->indices = p_indices;
+const std::vector<GLint> cubeVertices = {
+        -1, -1, -1,
+        1, -1, -1,
+        1, 1, -1,
+        -1, 1, -1,
+        -1, -1, 1,
+        1, -1, 1,
+        1, 1, 1,
+        -1, 1, 1
+};
 
+const std::vector<GLint> cubeIndices = {
+    0, 1, 3, 3, 1, 2, // back
+    1, 5, 2, 2, 5, 6, // right
+    5, 4, 6, 6, 4, 7, // front
+    4, 0, 7, 7, 0, 3, // left
+    3, 2, 7, 7, 2, 6, // top
+    4, 5, 0, 0, 5, 1 // bottom
+};
+
+BlockMesh::BlockMesh() : shader("shaders/shader.vert", "shaders/shader.frag") {
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
@@ -16,10 +33,10 @@ BlockMesh::BlockMesh(std::vector<GLint> p_vertices, std::vector<GLint> p_indices
     glBindVertexArray(vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLint), &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, cubeVertices.size() * sizeof(GLint), &cubeVertices[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLint), &indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, cubeIndices.size() * sizeof(GLint), &cubeIndices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_INT, GL_FALSE, 3 * sizeof(GLint), (void*)0);
@@ -51,7 +68,7 @@ void BlockMesh::draw(glm::vec3 position, Camera &camera) {
     shader.setMat4("model", model);
 
     glBindVertexArray(vao);
-    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(cubeIndices.size()), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
 
