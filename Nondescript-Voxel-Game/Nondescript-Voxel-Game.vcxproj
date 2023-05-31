@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="Block\Block.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Chunk\Chunk.cpp" />
+    <ClCompile Include="Chunk\ChunkMesh.cpp" />
+    <ClCompile Include="Chunk\ChunkMeshBuilder.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -32,6 +35,9 @@
   <ItemGroup>
     <ClInclude Include="Block\Block.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Chunk\Chunk.h" />
+    <ClInclude Include="Chunk\ChunkMesh.h" />
+    <ClInclude Include="Chunk\ChunkMeshBuilder.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Block\BlockMesh.h" />
     <ClInclude Include="Quad\QuadMesh.h" />
